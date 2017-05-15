@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Custom Desktop Openbox</title>
+    <link href="../css/stylesheet.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body class="background" id="anfangderseite">
+<div class="seitensprung"><a href="#anfangderseite"><img src="../img/pfeil.png" width="50" height="50"></a></div>
+    <div class="main">
+        
+        <div class="header">
+            <div class="link"> <a href="../sites/einrichtung.html">Installation / Einrichtung</a></div>        
+            <div class="link"> <a href="../sites/plasma.html">Der Desktop Plasma 5</a></div>
+            <div class="link"> <a href="../sites/xfce.html">Der Desktop XFCE4</a></div>
+            <div class="link"> <a href="../sites/lxde.html">Der Desktop LXDE</a></div>
+            <div class="link"> <a href="../sites/mate.html">Der Desktop MATE</a></div>
+            <div class="link"> <a href="../sites/openbox.html">Der Desktop Openbox</a></div>
+        </div>
+
+        <div class="logo"><a href="../index.html"><img src="../img/archlogo.png"></a></div>
+        <div class="ueberschrift">Custom Desktop Openbox</div>
+        
+        <div class="img_txt">
+            <div class="image"><img src="../img_openbox/open_02.png" width="100%"></div>
+            <div class="text1">
+                Sobald der Login Screen erscheint kann man sich mit<br>
+                dem vorher angelegten Benutzer einloggen.<br><br>
+                Man sollte es vermeiden mit dem root Benutzer zu arbeiten.<br>
+                Für administrative Zwecke benutzt man den Befehl "sudo".<br><br>
+                Um "openbox" und ein paar nützliche Tools zu installieren<br>
+                gibt man folgenden Befehl ein:<br><br>
+                <div class="kommando">sudo pacman -S openbox openbox-themes oblogout obconf<br>
+                obmenu pcmanfm slim tint2 xterm volumeicon</div><br>
+                openbox /-themes = Windows Manager /-themes<br>
+                obconf/obmenu = Konfigurationsoberflächen<br>
+                oblogout = Session Manager<br>
+                xterm = Terminal<br>
+                slim = Einfacher Login Manager<br>
+                pcmanfm = Datei Manager<br>
+                tint2 = Taskleiste<br><br>
+                Mit dem Befehl:<br><br>
+                <div class="kommando">sudo systemctl enable slim.service</div><br>
+                aktiviert man den Login Manager beim Start.<br><br>
+                <div class="kommando">mkdir /home/USERNAME/.config</div>und
+                <div class="kommando">cp -r /etc/xdg/openbox/ /home/USERNAME/.config</div><br>
+                kopiert die Konfigurationsdatein von openbox in das Homeverzeichnis. USERNAME = angelegter User.
+            </div>  
+        </div>
+        
+        <div class="img_txt">
+            <div class="image"><img src="../img_openbox/open_03_2.png" width="100%"></div>
+            <div class="text1">
+                Mit dem Befehl<br><br>
+                <div class="kommando">nano /home/USERNAME/.config/openbox/autostart</div><br>
+                öffnet man mit dem Texteditor nano die Konfigurations-<br>
+                datei des Autostartmenüs von openbox.<br><br>
+                Hier kann man alles rauslöschen und folgende Zeilen eintragen:<br><br>
+                pcmanfm --desktop &<br>tint2 &<br>nm-applet &<br>volumeicon &<br><br>
+                Das kaufmännische UND (&) ist wichtig, da ansonsten eine<br>
+                Zeile ausgeführt wird und dann stehen bleibt.<br><br>
+                pcmanfm --desktop = Hintergrundbild & Icons anzeigen<br>
+                tint2 = Taskbar starten<br>
+                nm-applet = Netzwerksymbol im Systemtray<br>
+                volumeicon = Lautstärkesymbol im Systemtray<br><br>
+                <div class="kommando">strg + o = speichern</div>
+                <div class="kommando">strg + x = beenden</div><br>
+                evtl. wird man beim beenden um Bestätigung gefragt.                
+            </div>  
+        </div>
+        
+        <div class="img_txt">
+            <div class="image"><img src="../img_openbox/open_03.png" width="100%"></div>
+            <div class="text1">
+                Nach einem Neustart sollte der Login Manager erscheinen.<br><br>
+                Hier wieder mit dem<br><br>Benutzernamen
+                und dem Kennwort anmelden.
+            </div>  
+        </div>
+        
+        <div class="img_txt">
+            <div class="image"><img src="../img_openbox/open_04.png" width="100%"></div>
+            <div class="text1">
+                Und anschließend ist man auf einem grauen Desktop.<br><br>
+                Nun muss dieser eingerichtet werden um gut auszuschauen.<br><br>
+                Im ersten Schritt aktiviere ich Desktopsymbole und ändere<br>
+                die Farbe des Hintergrunds.<br>
+                Man kann auch hier schon ein Hintergrundbild einstellen.<br><br>
+                Dazu einfach mit der rechten Maustaste auf den Desktop<br>
+                klicken um in das Einstellungsmenü zu gelangen.
+            </div>  
+        </div>
+                
+        <div class="img_txt">
+            <div class="image"><img src="../img_openbox/open_05.png" width="100%"></div>
+            <div class="text1">
+                Hat man die Desktopsymbole aktiviert und öffnet eines,<br>
+                ist man im Dateimanager pcmanfm.<br><br>
+                In diesen gibt es ein Anwengungsmenü, welches alle<br>
+                installierten Anwendungen anzeigt.<br><br><br><br><br><br><br><br><br>
+                Fortsetzung folgt...............
+            </div>  
+        </div>
+<!--        
+        <div class="img_txt">
+            <div class="image"><img src="../img_openbox/open_04.png" width="100%"></div>
+            <div class="text1">
+            </div>  
+        </div>
+        
+        <div class="img_txt">
+            <div class="image"><img src="../img_openbox/open_04.png" width="100%"></div>
+            <div class="text1">
+            </div>  
+        </div>
+        
+        <div class="img_txt">
+            <div class="image"><img src="../img_openbox/open_04.png" width="100%"></div>
+            <div class="text1">
+            </div>  
+        </div>
+-->
+            
+        <footer class="footer"><h> Linux "kill" Befehl Parameter: -15 = Bitte bitte lieber Prozess beende dich
+            / -9 = Zieht ein Messer und schneidet dem Prozess die Kehle durch</h></footer>
+        
+    </div>
+</body>
+</html>

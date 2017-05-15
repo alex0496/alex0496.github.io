@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Installation und Einrichtung</title>
+    <link href="../css/stylesheet.css" rel="stylesheet" type="text/css" />
+    </head>
+
+<body class="background" id="anfangderseite">
+<div class="seitensprung"><a href="#anfangderseite"><img src="../img/pfeil.png" width="50" height="50"></a></div>
+    <div class="main">
+        
+        <div class="header">
+            <div class="link"> <a href="../sites/einrichtung.html">Installation / Einrichtung</a></div>        
+            <div class="link"> <a href="../sites/plasma.html">Der Desktop Plasma 5</a></div>
+            <div class="link"> <a href="../sites/xfce.html">Der Desktop XFCE4</a></div>
+            <div class="link"> <a href="../sites/lxde.html">Der Desktop LXDE</a></div>
+            <div class="link"> <a href="../sites/mate.html">Der Desktop MATE</a></div>
+            <div class="link"> <a href="../sites/openbox.html">Der Desktop Openbox</a></div>
+        </div>
+
+        <div class="logo"><a href="../index.html"><img src="../img/archlogo.png"></a></div>
+        <div class="ueberschrift">Installation und Einrichtung</div>
+        
+        <div class="img_txt">
+            <div class="image"><img src="../img/01_Start.png" width="100%"></div>
+            <div class="text1">
+                Nach der Installation sieht man nur die Kommandozeile.<br><br>
+                Als erstes Kommando sollte man hier die Tastaturbelegung ändern.<br><br>
+                <div class="kommando"> loadkeys de-latin1</div><br>
+                Damit wird die Tastaturbelegung von Englisch auf Deutsch geändert.<br><br>
+                In der Englischen Belegung sind die Buchstaben "y" und "z" vertauscht.<br>
+                Der Bindestrick "-" befindet sich auf der Fragezeichen "?" Taste.<br><br>
+                Danach wird die Festplatte partitioniert.<br>
+                Im Regelfall lautet der Befehl dafür:<br><br>
+                <div class="kommando">fdisk /dev/sda</div><br>
+                Sollte dies nicht der Fall sein, kann man mit dem Befehl<br><br>
+                <div class="kommando">fdisk -l</div><br>
+                das Zielmedium herausfinden, und den vorherigen Befehl anpassen.<br><br>
+                Zum Beispiel könnte der Befehl auch:<br><br>
+                <div class="kommando">fdisk /dev/sdb</div>oder
+                <div class="kommando">fdisk /dev/sdc</div><br>
+                lauten.
+            </div>  
+        </div>
+
+        <div class="img_txt">
+            <div class="image"><img src="../img/02_Partitionen.png" width="100%"></div>
+            <div class="text1">
+                Das Tool "fdisk" ist eigentlich ziemlich selbsterklärend <br>
+                Es wird hauptsächlich mit ein paar Buchstaben gesteuert. <br><br>
+                <div class="kommando">n = eine neue Partition anlegen</div>
+                <div class="kommando">p bzw. e = primäre bzw. erweiterte Partition</div><br>
+                (In der Regel reichen primäre Partitionen)<br><br>
+                Danach wird nach dem Start- und Endsektoren gefragt. Den Startsektor kann man
+                mit "Enter" weiterklicken (Standartwert wird benutzt).<br>
+                Mit dem Endsektor gibt man die Größe der Partition an. Z. B. :<br><br>
+                <div class="kommando">+300M = 300 Megabyte</div>
+                <div class="kommando">+20G =  20 Gigabyte</div><br>
+                Je nach Einsatzzweck und/oder Vorlieben kann der Partitionsaufbau variieren.<br>
+                Eine Standardkonfiguration der Festplatte ist folgende:<br><br>
+                100-300 Megabyte: /boot - Partition<br>
+                8-12 Gigabyte: /root - Partition<br>
+                4-8 Gigabyte: /swap - Partition<br>
+                Den Rest der Festplatte für die /home - Partition<br><br>
+                Danach noch mit:<br><br>
+                <div class="kommando">a = Das Bootflag von der /boot - Partition setzen</div>
+                <div class="kommando">t = Die /swap Partition auf Ihren Typ setzen</div><br>
+                Und zu guter letzt mit:<br><br>
+                <div class="kommando">w = Partition auf Festplatte schreiben</div><br>
+                Jetzt befindet man sich wieder in der Kommandozeile: <br><br>
+                Nun muss man nur noch das Filesystem der Partitionen anlegen:<br><br>
+                <div class="kommando">mkfs.ext4 -L NAME /dev/sdaX</div><br>
+                Wobei mit "NAME" der Name der Partition gewählt werden kann.<br>
+                Z. B. boot, root und home. "X" = PartitionsNr. also sda1, sda2 usw.<br><br>
+                Den swap anlegen mit:<br><br>
+                <div class="kommando">mkswap -L NAME /dev/sdaX</div><br>
+                Auch hier gilt: "NAME" = wählbarer Partitionsname. "X" = Partitions Nr.
+            </div>
+        </div>
+
+        <div class="img_txt">
+            <div class="image"><img src="../img/03_Mount.png" width="100%"></div>
+            <div class="text1">
+                Als nächstes müssen die Partitionen gemountet werden.<br><br>
+                Dies erledigt man mit dem Befehl:<br><br>
+                <div class="kommando">mount /dev/sdX /mnt</div><br>
+                "X" = Partitions Nr. der /root Partition. In diesem Beispiel eben /dev/sda2<br><br>
+                Verzeichnisse für nachfolgende Partition anlegen mit:<br><br>
+                <div class="kommando">mkdir /mnt/boot</div>
+                und
+                <div class="kommando">mkdir /mnt/home</div><br>
+                Restlichen Partitionen in die eben angelegten Verzeichnisse einbinden:<br><br>
+                <div class="kommando">mount /dev/sdaX /mnt/boot</div><br>
+                <div class="kommando">mount /dev/sdaX /mnt/home</div><br>
+                Auch hier: "X" = Partitions Nummer. Im Beispiel ist das:<br>
+                /dev/sda1 = /boot<br>
+                /dev/sda3 = /home<br><br>
+                Den Swap (im Beispiel /dev/sda4) einschalten mit:<br><br>
+                <div class="kommando">swapon /dev/sda4</div><br><br>
+                Nachdem alles gemounted ist kann man überprüfen mit:
+                <div class="kommando">df -Th</div>und
+                <div class="kommando">free -h</div><br>
+            </div>
+        </div>
+
+        <div class="img_txt">
+            <div class="image"><img src="../img/04_Pacstrap.png" width="100%"></div>
+            <div class="text1">
+                Dies ist nun die eigentliche Installation von Arch Linux.<br><br>
+                Im Gegensatz zu den "Windows" der Linux Distributionen Ubuntu und OpenSUSE
+                installiert Arch Linux nicht Unmengen an Software mit,<br>
+                welche sowieso nur ca. 10% der Anwender benutzen und das System<br>
+                unnötig aufblähen und dadurch den ganzen Rechner langsam macht.<br><br>
+                Arch Linux installiert ein System, das gerade so läuft.<br>
+                Man erhält eine Kommandozeile und ein paar nützliche Tools.<br><br>
+                Das Paket "base" ist das Grundsystem.<br>
+                Das Paket "base-devel" wird benötigt um nachträglich Software zu installieren.<br><br>
+                Für Notebooks (oder PCs welche über WLAN verbunden sind) empfiehlt sich noch
+                das Packet "wpa_supplicant" mitzuinstallieren,
+                damit man nach dem Neustart das WLAN weiter benutzen kann.<br><br>
+                Für Rechner mit Intel Prozessor empfiehlt sich noch das Packet intel-ucode.<br>
+                Dieses aktualisiert die Firmware der CPU bei Intel Prozessoren.<br>
+                Aktualisierungen für AMD Prozessoren sind bereits enthalten.<br><br>
+                Im Beispiel ist nur die Grundinstallation.<br><br>
+                Folgender Befehl würde die Basis- und empfohlenen Packete installieren.<br><br>
+                <div class="kommando">pacstrap /mnt base base-devel wpa_supplicant intel-ucode</div><br><br>
+                Das "/mnt" gibt das Verzeichnis an wohin die Packete installiert werden.<br><br>
+                Also die Partition /dev/sda2 - welche vorher nach /mnt gemounted wurde.
+            </div>
+        </div>
+
+        <div class="img_txt">
+            <div class="image"><img src="../img/05_fstab.png" width="100%"></div>
+            <div class="text1">
+            Nachdem das System installiert ist muss die File System Tabelle erstellt werden.<br><br>
+            Die wird mit dem Befehl:<br><br>
+            <div class="kommando">genfstab -Up /mnt > /mnt/etc/fstab</div><br> erledigt.<br><br>
+            Up: U = UUID der Partitionen verwenden / p = nur eigene Partitionen verwenden<br><br>
+            /mnt: Verzeichnis von welchem die Tabelle erstellt werden soll<br><br>
+            > /mnt/etc/fstab: Verzeichnis wohin die Tabelle erstellt werden soll<br><br>
+            Die File System Tabelle wird verwendet um nach dem Starten des Kernels<br>
+            die Partitionen in die richtigen Verzeichnisse einzubinden.<br><br>
+            UUIDs bzw. Labels zu verwenden ist optionel, da man auch nur den Gerätepfad<br>
+            wie z. B. "/dev/sdX" verwenden kann.<br><br>
+            Aber bei evtl. Aufrüstung des PCs durch eine Festplatte oder booten mit
+            angeschlossenem USB-Stick können sich die Gerätepfade ändern und das
+            System wird nicht starten, da es die /root Partition nicht findet.<br><br>
+            Die File System Tabella kann man kontrollieren mit:<br><br>
+            <div class="kommando">cat /mnt/etc/fstab</div><br>
+            Im Beispiel ist eine FS-Tabelle zu sehen.
+            </div>
+        </div>
+        
+        <div class="img_txt">
+            <div class="image"><img src="../img/06_Sprache_1.png" width="100%"></div>
+            <div class="text1">
+                Da nun das System benutzbar ist kann man es konfigurieren. Mit<br><br>
+                <div class="kommando">arch-chroot /mnt</div><br>
+                wechselt man in das eben installierte System und arbeitet nun so,<br>
+                als währe der Rechner direkt mit diesem System hochgefahren.<br><br>
+                Nun folgt eine Reihe an Befehlen um die Kommanzeile zu konfigurieren:<br><br>
+                <div class="kommando">echo lin-vm > /etc/hostname</div><br>
+                Setzt den frei wählbaren Hostname des Rechners. Im Beispiel "lin-vm".<br><br>
+                <div class="kommando">echo LANG=de_DE.UTF-8 > /etc/locale.conf</div>
+                <div class="kommando">echo LANGUAGE=de_DE >> /etc/locale.conf</div><br>
+                Setzt die Sprache auf deutsch. WICHTIG beim zweiten Befehl!!!<br>
+                Zwei Pfeile nach rechts: ">>" da sonst die Datei überschrieben statt ergänzt wird.<br><br>
+                <div class="kommando">echo KEYMAP=de-latin1 > /etc/vconsole.conf</div>
+                <div class="kommando">echo FONT=lat9w-16 >> /etc/vconsole.conf</div><br>
+                Tastaturbelegund und Schrift auf deutsch einstellen.<br><br>
+                <div class="kommando">ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime</div><br>
+                Symbolischen Link für die Systemzeit erstellen.
+            </div>
+        </div>
+        
+        <div class="img_txt">
+            <div class="image"><img src="../img/07_Sprache_2.png" width="100%"></div>
+            <div class="text1">
+                Die lokale Textsprache einstellen. Mit<br><br>
+                <div class="kommando">nano /etc/locale.gen</div><br>
+                öffnet man die Datei "/etc/locale.gen" im Texteditor "nano".<br><br>
+                Die vier Zeilen:<br><br>
+                #de_DE.UTF-8<br>
+                #de_DE.ISO-8859-1<br>
+                #de_DE.ISO-8859-15@euro<br>
+                #en_US.UTF-8<br><br>
+                suchen und das Route Zeichen davor entfernen.<br><br>
+                Die englische Sprache ist wichtig falls Drittanbieter-Software<br>
+                Fehlermeldungen erzeugt welche auf englisch sind.<br>
+                Sie würden ohne die englische Sprache nicht bzw. falsch angezeigt werden.<br><br>
+                Anschließend mit dem Befehl<br><br>
+                <div class="kommando">locale-gen</div><br>
+                Die eben eingegliederten Sprachen erzeugen.
+            </div>
+        </div>
+        
+        <div class="img_txt">
+            <div class="image"><img src="../img/08_Kernel.png" width="100%"></div>
+            <div class="text1">
+                Damit währen die Hauptstellen im System konfiguriert.<br><br>
+                Nun wird mit<br><br>
+                <div class="kommando">mkinitcpio -p linux</div><br>
+                der eigentliche Linux Kernel erzeugt.<br><br>
+                Zwar übernimmt das Skript "pacstrap" diesen Schritt,<br>
+                aber falls man Modifizierungen am Kernel vornimmt währe dieser<br>
+                Schritt notwendig, da die Modifizierungen sonst nicht aktiv währen.<br><br>
+                Sollte man nachträglich etwas am Kernel verstellen<br>
+                ist dieser Befehl ebenfalls erforderlich.<br><br>
+                Der Parameter: "-p" liest alles in der Datei "/etc/mkinitcpio.d"<br>
+                an welchem man modifizieren kann und generiert daraus den Kernel.<br><br>
+                Ich lasse an dieser Stelle den Linux Kernel neu erzeugen.<br>
+                Es ist zwar nicht zwingend notwendig, schadet aber auch nicht.<br><br>
+                Die Zeilen welche mit einem gelben "==> WARNING:" beginnen,<br>
+                sind getrost zu vernachlässigen.
+            </div>
+        </div>
+        
+        <div class="img_txt">
+            <div class="image"><img src="../img/10_Bootloader_1.png" width="100%"></div>
+            <div class="text1">
+                Damit der Rechner das Betriebssystem bzw. den eben erstellten Kernel<br>
+                starten kann, wird ein Bootloader benötigt. Im Beispiel ist das Syslinux.<br><br>
+                Zusätzlich zu dem Bootloader installiere ich noch zwei nützliche Tools.<br><br>
+                bash-completion: Mit der Tab-Taste Befehle und Pfade vervollständigen.<br>
+                networkmanager: Automatisch eine Netzwerkverbindung herstellen.<br><br>
+                Nach der Installation der Tools noch mit<br><br>
+                <div class="kommando">systemctl enable NetworkManager</div><br>
+                die automatische Netzwerkverbindungsherstellung aktivieren.<br><br>
+                Anschließend muss der Bootloader "Syslinux" noch konfiguriert werden...<br><br>
+                Mit dem Befehl<br><br>
+                <div class="kommando">lsblk /dev/sdX >> /boot/syslinux/syslinux.cfg</div><br>
+                wird die UUID der /root - Partition ans Ende syslinux.cfg geschrieben.<br><br>
+                WICHTIG: zwei Pfeile nach rechts: ">>" da sonst die Datei überschrieben wird!!!<br><br>
+                Anschließend mit<br><br>
+                <div class="kommando">nano /boot/syslinux/syslinux.cfg</div><br>
+                die Konfigurationsdatei des Bootloaders mit dem Texteditor "nano" öffnen.
+            </div>
+        </div>
+        
+        <div class="img_txt">
+            <div class="image"><img src="../img/11_Bootloader_2.png" width="100%"></div>
+            <div class="text1">
+                Am Ende der Datei steht eine Zeile welche die UUID der /root Partition enthält.<br><br>
+                Alles bis auf die UUID der Zeile löschen und die UUID kopieren.<br><br>
+                Diese muss nun an die Zeile: "APPEND root=" angehängt werden.<br><br>
+                Es würde zwar auch mit: "APPEND root=/dev/sdX rw" funktionieren,<br>
+                aber damit gäbe es wieder die vorher angesprochene Aufrüstungs-Problematik.<br><br>
+                Wichtig ist das "rw" am Ende der Zeile.<br><br>
+                Im Beispiel ist eine Zeile wie sie sein sollte. UUID ist immer anders.<br><br>
+                Die obere Zeile mit dem Routezeichen "#" davor kann gelöscht werden.<br><br>
+                Nachdem die Datei gespeichert wurde und man wieder<br>
+                auf der Kommandozeile ist, mit dem Befehl<br><br>
+                <div class="kommando">syslinux-install_update -iam</div><br>
+                den Konfigurierten Bootloader in den MBR der Festplatte schreiben.<br><br>
+                Abschließend den Befehl<br><br>
+                <div class="kommando">passwd</div><br>
+                eingeben und zweimal ein neues Kennwort eingeben.<br><br>
+                Dies ist das Kennwort für den "root" Benutzer.<br><br>
+                Den Rechner neustarten:<br><br>
+                <div class="kommando">reboot</div>
+            </div>
+        </div>
+        
+        <div class="img_txt">
+            <div class="image"><img src="../img/12_Erster%20Start.png" width="100%"></div>
+            <div class="text1">
+                Nach dem der Rechner hochgefahren ist sollte das Anmeldefenster erscheinen.<br><br>
+                als Nutzer: root eingeben und danach das vorher gewählte Kennwort.<br><br>
+                Somit ist das System istalliert und vollständig benutzbar.<br><br>
+                Ein absolutes Minimalsystem, welches um die 50 MB Arbeitsspeicher verbraucht,<br><br>
+                und somit auch auch alten bzw. Leistungsschwachen Rechnern läuft.<br><br>
+                Die Installation bis hier her ist mit etwas Übung innerhalb 10 Minuter erledigt.<br><br>
+                Natürlich ist auf dem System noch keine Software installiert.<br><br>
+                Aber die Software die man braucht installiert man einfach nach.<br><br>
+                Auch kann man das System im Moment nur mit der Tastaturbedienen.<br><br>
+                Aber auch eine Graphische Oberflächt kann einfach nachinstalliert werden.<br><br>
+                Ab hier entscheidet sich ob man das System minimal, schlank und schnell<br>
+                halten will, oder mit bunten Effekten und großen Programmen aufbläht.<br><br>
+                Aber egal was man macht, selbst ein mit Unmengen an Software überflutetes<br>
+                Arch Linux ist und bleibt immer schneller als ein Windows oder Ubuntu...<br><br>
+                Programme werden installiert mit dem Befehl:<br><br>
+                <div class="kommando">pacman -S name_des_programms</div><br>
+                Ich habe im Beispiel das Programm "screenfetch" installiert<br><br>
+                Programme startet man in dem man einfach den Name des Programms eingibt.<br><br>
+                "screenfetch" gibt einfach nur folgende Schrift wie im Beispiel aus.<br><br>                
+            </div>
+        </div>
+            
+        <div class="img_txt">
+            <div class="image"><img src="../img/13_User%20und%20Dienste.png" width="100%"></div>
+            <div class="text1">
+                Da man generell vermeiden sollte ständig als root Benutzer zu arbeiten<br>
+                legt man jetzt einen normalen Benutzer an.<br><br>
+                <div class="kommando">useradd -m -g users -s /bin/bash USERNAME</div><br>
+                USERNAME = frei wählbarer Benutzername<br>
+                "-m" = ein home Verzeichnis für den Benutzer erstellen<br>
+                "-g users" = die Hauptgruppe in der sich der User befindet<br>
+                "-s /bin/bash" = gibt die Shell an welche der Benutzer verwendet (hier bash)<br>
+                "-G ..." = gibt zusätzliche Gruppen an in welche der Benutzer eingetragen wird<br>
+                Zusätzliche Gruppen sind aber nicht zwingend notwendig.<br><br>
+                Nachdem der Benutzer angelegt worden ist mit<br><br>
+                <div class="kommando">passwd USERNAME</div><br>
+                dem eben angelegten Benutzer ein Passwort vergeben.<br><br>
+                Danach werden mit<br><br>
+                <div class="kommando">pacman -S acpid ntp dbus avahi cups cronie</div><br>
+                ein paar nützliche Dienste installiert.<br><br>
+                acpid = Energieverwaltung<br>
+                ntp = automatische Zeitsynchronisation<br>
+                dbus = interne Kommunikationsverwaltung<br>
+                avahi = Netzwerksyncronisation<br>
+                cups = Druckerverwaltung<br>
+                cronie = Cronjobs / Geplante Ausführung von Programmen<br><br>
+                Sollte es verschiedene Repositoriums zur Auswah geben (wie im Beispiel)<br><br>
+                kann man standartmäßig die default Einstellung gewählt werden.
+            </div>
+        </div>
+            
+        <div class="img_txt">
+            <div class="image"><img src="../img/14_xorg.png" width="100%"></div>
+            <div class="text1">
+                Als nächstes wird der Xorg-Server installiert.<br><br>
+                Der Xorg-Server stellt die nötigen Funktionen für eine<br>
+                Graphische Desktop Umgebung bereit.<br><br>
+                Der Befehl:<br><br>
+                <div class="kommando">pacman -S xorg-server xorg-xinit<br>xorg-utils xorg-server-utils</div><br>
+                installiert alle benötigten pakete.<br><br>
+                Im nächsten Schritt werden die Treiber für die Grafikkarte<br>
+                und falls vorhanden andere Geräte installiert.
+            </div>
+        </div>
+        
+        <div class="img_txt">
+            <div class="image"><img src="../img/15_Graka.png" width="100%"></div>
+            <div class="text1">
+                Die Grafikkartentreiber werden mit dem Befehl:<br><br>
+                <div class="kommando">pacman -S xf86-video-ati</div><br>
+                installiert.<br><br>
+                Dies ist der Treiber für AMD/ATI Grafikkarten.<br><br>
+                Sollte es sich um eine andere Grafikkarte handeln,<br>
+                muss der Befehl entsprechend angepasst werden. Z.B.:<br><br>
+                <div class="kommando">pacman -S xf86-video-nv</div><br>
+                für NVIDIA Grafikkarten, oder:<br><br>
+                <div class="kommando">pacman -S xf86-video-intel</div><br>
+                für Grafikkarten der Firma Intel (in die CPU integrierte Grafikchips).<br><br>
+                Desweiteren kann für Touchpads von Notebook noch der<br>
+                Treiber installiert werden. Der Befehl:<br><br>
+                <div class="kommando">pacman -S xf-input-synaptics</div><br>
+                ist für Touchpads der Firma Synaptics welche in ca. 90%<br>
+                aller Notebooks verbaut sind.<br><br>
+                Es kann auch passieren dass spezielle WLAN Treiber,<br>
+                oder Treiber von anderen Geräten erforderlich sind,<br>
+                aber in den meisten Fällen funktionieren die Sachen<br>
+                ohne größere Anpassungen.
+            </div>
+        </div>
+            
+        <div class="img_txt">
+            <div class="image"><img src="../img/16_xorg_sprache.png" width="100%"></div>
+            <div class="text1">
+                Anschließend noch die Spracheinstellungen der Tastatur für<br>
+                die Graphische Benutzeroberfläche.<br>
+                Dazu eine neue Datei erstellen und diese mit dem Text-<br>
+                editor nano öffnen. Dies geht in einem Schritt:<br><br>
+                <div class="kommando">nano /etc/X11/xorg.conf.d/20-keyboard.conf</div><br>
+                Die folgenden Zeilen wie im Beispiel eingeben:<br><br>
+                Section "InputClass"<br>Identifier "keyboard"<br>MatchIsKeyboard "yes"<br>
+                Option "XkbLayout" "de"<br>Option "XkbModel" "pc105"<br>EndSection<br><br>
+                Dies ist eine Konfiguration für eine deutsche Standart<br>
+                Tastatur. Wenn eine spezielle Tastatur verwendet werden<br>
+                soll muss diese Konfiguration entsprechend angepasst werden.<br><br>
+                Gespeichert wird die Datei mit der Tastenkombination:<br><br>
+                <div class="kommando">strg + o (evtl. mit Enter bestätigen)</div><br>
+                Und geschlossen wird der Texteditor mit:<br><br>
+                <div class="kommando">strg + x</div><br>
+                Als nächstes nur noch die Soundmodule installieren.
+            </div>
+        </div>
+            
+        <div class="img_txt">
+            <div class="image"><img src="../img/17_Sound.png" width="100%"></div>
+            <div class="text1">
+                Die Soundmodule werden mit folgendem Befehl installiert:<br><br>
+                <div class="kommando">pacman -S pulseaudio pulseaudio-alsa pavucontrol</div><br>
+                pulseaudio = Soundserver<br>pulseaudio-alsa = Einse Schicht welche genutzt wird wenn ein<br>
+                Programm mit pulse nicht zurecht kommt und nur alsa verwenden kann. Sozusagen ein Übersetzer.<br>
+                pavucontrol = Ein Graphisches Menü für die Einstellungen.<br><br>
+                Mit dem Befehl:<br><br>
+                <div class="kommando">pacman -S ttf-dejavu ttf-liberation noto-fonts</div><br>
+                werden etwas schönere Schriftarten installiert als die Standart<br>
+                Schriftarten. Es ist Geschmackssache welche verwendet werden.<br><br>
+                Die zusätzlichen Schriften können auch in den ersten Installations-<br>
+                Befehl geschrieben werden (wie im Beispiel zu sehen).<br><br><br>
+                Damit wäre das komplette Betriebssystem installiert.<br>
+                Es hat zwar noch keine Graphische Oberfläche, aber kann<br>
+                voll und Ganz benutzt werden.<br><br>
+                Mit etwas Übung ist das Betriebssystem (alle Schritte bis hier)<br>
+                in ca. 10-15 Minuten installiert. Je nach dem wie schnell<br>
+                man tippen kann und wie schnell die Internetleitung ist.<br><br>
+                Auf nachfolgenden Seiten werde ich verschiedene<br>
+                Desktopumgebungen vorstellen und evtl. Schritte von einer<br>
+                Standartinstallation bis zur kompletten Einrichtung zeigen.<br><br>
+                Natürlich ist auch die Einrichtung eher eine Geschmackssache.<br><br>
+                Also stehts dem Motto treu bleiben:<br><br>
+                <div class="kommando">Wenn dir etwas nicht gefällt, ändere es einfach!</div>
+            </div>
+        </div>
+            
+        <footer class="footer"><c>Ubuntu ist ein afrikanisches Sprichwort und bedeutet auf deutsch: 
+            Ich kann kein Debian einrichten</c></footer>
+        
+    </div>
+</body>
+</html>
