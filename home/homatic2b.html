@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+ <html lang="de">
+ <head>
+ <title>akademie.de-Workshop</title>
+ </head>
+ <body>
+HQ or Main or Central (Router)<br><br>
+en<br>
+conf ter<br>
+cdp run <br>
+int g0/0<br>
+no cdp enable <br>
+int g0/1<br>
+no cdp enable <br>
+exit<br>
+<br>
+ip route 0.0.0.0 0.0.0.0 192.168.2.1<br>
+ipv6 route ::/0 2001:DB8:ACAD:B::1<br>
+<br>
+ipv6 unicast-routing <br>
+<br>
+ip dhcp excluded-address 172.16.1.10<br>
+<br>
+ip dhcp pool LANA<br>
+<br>
+network 192.168.1.0 255.255.255.0<br>
+<br>
+default-router 192.168.1.1<br>
+<br>
+dns-server 209.165.200.5<br>
+exit <br>
+<br>
+ip dhcp pool LANC<br>
+<br>
+network 172.16.1.0 255.255.255.0<br>
+<br>
+default-router 172.16.1.1<br>
+dns-server 209.165.200.5<br><br><br>
+Branch - Remote - Local (Router)<br><br>
+en<br>
+conf ter<br>
+cdp run <br>
+int s0/0/1<br>
+<br>
+no cdp enable <br>
+int s0/1/0<br>
+no cdp enable <br>
+exit <br>
+ip route 0.0.0.0 0.0.0.0 198.51.100.1<br>
+ip route 0.0.0.0 0.0.0.0 203.0.113.1<br>
+ip route 0.0.0.0 0.0.0.0 203.0.113.1 5<br>
+<br>
+ipv6 route ::/0 2001:DB8:ACAD:D::1<br>
+ipv6 route ::/0 2001:DB8:ACAD:E::1 5<br>
+<br>
+ip route 192.168.1.0 255.255.255.0 192.168.2.2<br>
+<br>
+ipv6 route 2001:DB8:ACAD:A::/64 2001:DB8:ACAD:B::2<br>
+<br>
+ip route 172.16.1.10 255.255.255.255 192.168.2.2<br>
+ipv6 route 2001:DB8:ACAD:C::10/128 2001:DB8:ACAD:B::2<br>
+ipv6 unicast-routing <br>
+<br>
+ip nat inside source static 172.16.1.10 198.51.100.10<br>
+int s0/0/1<br>
+ip nat outside <br>
+int s0/0/0<br>
+ip nat inside <br>
+exit <br>
+<br>
+access-list 1 permit 192.168.1.0 0.0.0.255<br>
+access-list 1 permit 172.16.1.0 0.0.0.255<br>
+ip nat inside source list 1 interface s0/0/1 overload <br><br><br>
+Configure Host Addressing<br>
+<br>
+OFFICE 1 or ACAD-1 or RECORDS-1<br>
+IPv4 Configuration: DHCP Assigned<br>
+IPv6 Configuration:<br>
+- IPv6 Address: 2001:DB8:ACAD:A::5/64<br>
+- IPv6 Gateway: FE80::2<br>
+- IPv6 DNS Server: 2001:DB8:ACAD:F::5<br>
+PROD-1 or TEACH-1 or TAX-1<br>
+IPv4 Configuration: DHCP Assigned<br>
+IPv6 Configuration:<br>
+- IPv6 Address: 2001:DB8:ACAD:A::10/64<br>
+- IPv6 Gateway: FE80::2<br>
+- IPv6 DNS Server: 2001:DB8:ACAD:F::5<br>
+ACCT 1 or STUDENT-1 or PERMITS-1<br>
+IPv4 Configuration: DHCP Assigned<br>
+IPv6 Configuration:<br>
+- IPv6 Address: 2001:DB8:ACAD:A::15/64<br>
+- IPv6 Gateway: FE80::2<br>
+- IPv6 DNS Server: 2001:DB8:ACAD:F::5<br>
+ </body>
+ </html>
