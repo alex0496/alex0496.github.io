@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+ <html lang="de">
+ <head>
+ </head>
+ <body>
+HQ Router<br><br>
+enable <br>
+configure terminal <br>
+no ip domain-lookup <br>
+hostname HQ<br>
+service password-encryption <br>
+enable secret class<br>
+banner motd $users that unauthorized access is prohibited$<br>
+line console 0<br>
+logging synchronous <br>
+password cisco<br>
+login<br>
+exit<br>
+ip domain-name cisco.com<br>
+username admin password class<br>
+crypto key generate rsa <br>
+yes<br>
+1024<br>
+ip ssh version 2<br>
+line vty 0 15<br>
+transport input ssh<br>
+login local <br>
+exit <br>
+<br>
+interface gigabitEthernet 0/1<br>
+ip address 192.168.2.1 255.255.255.0<br>
+no shutdown <br>
+description Branch-1<br>
+<br>
+int s0/0/0<br>
+ip address 10.1.1.1 255.255.255.252<br>
+no shutdown <br>
+description Connection-to-Branch<br>
+exit<br>
+<br>
+interface g0/0.5<br>
+encapsulation dot1Q 5<br>
+ip address 192.168.1.1 255.255.255.240<br>
+<br>
+interface g0/0.10<br>
+encapsulation dot1Q 10<br>
+ip address 192.168.1.17 255.255.255.240<br>
+<br>
+interface g0/0.15<br>
+encapsulation dot1Q 15<br>
+ip address 192.168.1.33 255.255.255.240<br>
+<br>
+interface g0/0.50<br>
+encapsulation dot1Q 50<br>
+ip address 192.168.1.49 255.255.255.240<br>
+exit<br>
+<br>
+int g0/0<br>
+no sh<br>
+no shutdown <br>
+exit <br>
+<br>
+ip access-list standard block15<br>
+deny 192.168.1.32 0.0.0.15<br>
+permit any<br>
+<br>
+ip access-list standard ACL<br>
+line vty 0<br>
+access-class ACL in<br>
+<br>
+int g0/0.10<br>
+ip access-group block15 out <br>
+exit<br>
+<br>
+Router rip<br>
+version 2<br>
+network 10.1.1.0<br>
+network 192.168.1.0<br>
+network 192.168.1.16<br>
+network 192.168.1.32<br>
+network 192.168.1.48<br>
+network 192.168.2.0<br>
+no auto-summary<br>
+passive-interface g0/0.5<br>
+passive-interface g0/0.10<br>
+passive-interface g0/0.15<br>
+passive-interface g0/0.50<br>
+passive-interface g0/0<br>
+passive-interface g0/1<br>
+exit<br>
+<br>
+service timestamps log datetime msec<br>
+service timestamps debug datetime msec<br>
+ntp server 192.168.2.10<br>
+<br>
+logging 192.168.2.10<br>
+<br>
+logging trap debugging<br>
+ntp update-calendar<br><br><br>
+Brench Router<br><br>
+en<br>
+conf ter<br>
+router rip<br>
+version 2<br>
+network 10.1.1.0<br>
+network 192.168.3.0<br>
+default-information originate<br>
+no auto-summary<br>
+passive-interface s0/0/1<br>
+passive-interface g0/0<br><br><br>
+Switch Bldg A<br><br>
+enable <br>
+configure terminal <br>
+vlan 5<br>
+name OFFICE<br>
+vlan 10<br>
+name ACCT<br>
+vlan 15<br>
+name PROD<br>
+vlan 50<br>
+name ADMIN<br>
+exit <br>
+
+interface range f0/23, f0/24, g0/1<br>
+switchport mode trunk<br>
+exit<br>
+<br>
+int vlan 50<br>
+ip address 192.168.1.50 255.255.255.240<br>
+no shutdown <br>
+exit <br>
+ip default-gateway 192.168.1.49<br><br><br>
+Switch Bldg A 1<br><br>
+enable <br>
+configure terminal <br>
+vlan 5<br>
+name OFFICE<br>
+vlan 10<br>
+name ACCT<br>
+vlan 15<br>
+name PROD<br>
+vlan 50<br>
+name ADMIN<br>
+exit <br>
+int f0/23<br>
+switchport mode trunk <br>
+int f0/5<br>
+switchport mode access<br>
+switchport access vlan 5<br>
+int f0/10<br>
+switchport mode access <br>
+switchport access vlan 10<br>
+<br>
+int f0/15<br>
+switchport mode access <br>
+switchport access vlan 15<br>
+<br>
+int f0/20<br>
+switchport mode access <br>
+switchport access vlan 50<br>
+exit<br>
+<br>
+int vlan 50<br>
+ip address 192.168.1.51 255.255.255.240<br>
+no shutdown <br>
+exit <br>
+<br>
+ip default-gateway 192.168.1.49<br>
+int range f0/1-4, f0/6-9, f0/11-14, f0/16-19, f0/21-22, f0/24, g0/1-2<br>
+shutdown<br>
+<br>
+int range f0/5, f0/10, f0/15, f0/20<br>
+switchport mode access <br>
+switchport port-security <br>
+switchport port-security maximum 2<br>
+switchport port-security mac-add sticky<br>
+switchport port-security violation protect<br><br><br>
+Switch Bldg A 2<br><br>
+enable <br>
+configure terminal <br>
+<br>
+vlan 5<br>
+name OFFICE<br>
+vlan 10<br>
+name ACCT<br>
+vlan 15<br>
+name PROD<br>
+vlan 50<br>
+name ADMIN<br>
+<br>
+exit <br>
+int f0/24<br>
+switchport mode trunk <br>
+exit <br>
+interface f0/5<br>
+switchport mode access <br>
+switchport access vlan 5<br>
+interface f0/10<br>
+switchport mode access <br>
+switchport access vlan 10<br>
+interface f0/15<br>
+switchport mode access <br>
+switchport access vlan 15<br>
+<br>
+interface f0/20<br>
+switchport mode access <br>
+switchport access vlan 50<br>
+<br>
+int vlan 50<br>
+ip add 192.168.1.52 255.255.255.240<br>
+no sh<br>
+exit<br>
+ip default-gateway 192.168.1.49<br>
+  <div class="image"><img src="../home/address1b.png"></div>
+  <div class="image"><img src="../home/vlan1b.png"></div>
+  <div class="image"><img src="../home/host1b.png"></div>
+ </body>
+ </html>
