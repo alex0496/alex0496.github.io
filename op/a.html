@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+ <html lang="de">
+ <head>
+ </head>
+ <body>
+HQ Router<br>
+!<br>
+ipv6 unicast-routing<br>
+!<br>
+interface Serial0/0/0<br>
+ bandwidth 128<br>
+ ip address 10.10.10.2 255.255.255.252<br>
+ ipv6 address FE80::1 link-local<br>
+ ipv6 address 2001:DB8:10::2/64<br>
+ ipv6 ospf 10 area 0<br>
+ clock rate 128000<br>
+!<br>
+interface Serial0/0/1<br>
+ bandwidth 128<br>
+ ip address 10.10.20.2 255.255.255.252<br>
+ ipv6 address FE80::1 link-local<br>
+ ipv6 address 2001:DB8:20::2/64<br>
+ ipv6 ospf 10 area 0<br>
+ clock rate 128000<br>
+!<br>
+interface Serial0/1/0<br>
+ ip address 10.0.0.1 255.255.255.252<br>
+ ipv6 address FE80::1 link-local<br>
+ ipv6 address 2001:DB8:1::1/64<br>
+!<br>
+router ospf 10<br>
+ router-id 10.20.0.0<br>
+ log-adjacency-changes<br>
+ auto-cost reference-bandwidth 1000<br>
+ network 10.10.10.0 0.0.0.3 area 0<br>
+ network 10.10.20.0 0.0.0.3 area 0<br>
+ default-information originate<br>
+!<br>
+ipv6 router ospf 10<br>
+ router-id 10.20.0.0<br>
+ default-information originate<br>
+ log-adjacency-changes<br>
+ auto-cost reference-bandwidth 1000<br>
+!<br>
+ip route 0.0.0.0 0.0.0.0 Serial0/1/0<br>
+!<br>
+ipv6 route ::/0 Serial0/1/0<br>
+!<br>
+end<br>
+------<br><br>
+London<br>
+!<br>
+ipv6 unicast-routing<br>
+!<br>
+interface Serial0/0/0<br>
+ bandwidth 128<br>
+ ip address 10.10.10.1 255.255.255.252<br>
+ ipv6 address 2001:DB8:10::1/64<br>
+ ipv6 ospf 10 area 0<br>
+!<br>
+interface Serial0/0/1<br>
+ ip address 172.16.10.1 255.255.255.252<br>
+ ipv6 address 2001:DB8:10A::1/64<br>
+ ipv6 ospf 10 area 10<br>
+ clock rate 2000000<br>
+!<br>
+interface Serial0/1/0<br>
+ ip address 172.16.10.5 255.255.255.252<br>
+ ipv6 address 2001:DB8:10B::1/64<br>
+ ipv6 ospf 10 area 10<br>
+ clock rate 2000000<br>
+!<br>
+router ospf 10<br>
+ router-id 10.0.0.0<br>
+ log-adjacency-changes<br>
+ auto-cost reference-bandwidth 1000<br>
+ network 10.10.10.0 0.0.0.3 area 0<br>
+ network 172.16.10.0 0.0.0.3 area 10<br>
+ network 172.16.10.4 0.0.0.3 area 10<br>
+!<br>
+ipv6 router ospf 10<br>
+ router-id 10.0.0.0<br>
+ log-adjacency-changes<br>
+ auto-cost reference-bandwidth 1000<br>
+!<br>
+line con 0<br>
+ exec-timeout 1000 0<br>
+ logging synchronous<br>
+!<br>
+end<br>
+------<br><br>
+West<br>
+!<br>
+ipv6 unicast-routing<br>
+!<br>
+interface GigabitEthernet0/0<br>
+ ip address 192.168.11.1 255.255.255.0<br>
+ duplex auto<br>
+ speed auto<br>
+ ipv6 address FE80::101 link-local<br>
+ ipv6 address 2001:DB8:11::1/64<br>
+ ipv6 ospf 10 area 10<br>
+!<br>
+interface GigabitEthernet0/1<br>
+ ip address 172.16.10.9 255.255.255.252<br>
+ ip ospf hello-interval 5<br>
+ ip ospf dead-interval 20<br>
+ ip ospf priority 255<br>
+ duplex auto<br>
+ speed auto<br>
+ ipv6 address FE80::101 link-local<br>
+ ipv6 address 2001:DB8:10C::1/64<br>
+ ipv6 ospf hello-interval 5<br>
+ ipv6 ospf dead-interval 20<br>
+ ipv6 ospf priority 255<br>
+ ipv6 ospf 10 area 10<br>
+!<br>
+interface Serial0/0/0<br>
+ ip address 172.16.10.2 255.255.255.252<br>
+ ipv6 address 2001:DB8:10A::2/64<br>
+ ipv6 ospf 10 area 10<br>
+!<br>
+router ospf 10<br>
+ router-id 10.1.1.1<br>
+ log-adjacency-changes<br>
+ passive-interface GigabitEthernet0/0<br>
+ auto-cost reference-bandwidth 1000<br>
+ network 172.16.10.8 0.0.0.3 area 10<br>
+ network 172.16.10.0 0.0.0.3 area 10<br>
+ network 192.168.11.0 0.0.0.255 area 10<br>
+!<br>
+ipv6 router ospf 10<br>
+ router-id 10.1.1.1<br>
+ log-adjacency-changes<br>
+ passive-interface GigabitEthernet0/0<br>
+ auto-cost reference-bandwidth 1000<br>
+!<br>
+line con 0<br>
+ exec-timeout 1000 0<br>
+!<br>
+end<br>
+------<br><br>
+East<br>
+!<br>
+ipv6 unicast-routing<br>
+!<br>
+interface GigabitEthernet0/0<br>
+ ip address 192.168.12.1 255.255.255.0<br>
+ duplex auto<br>
+ speed auto<br>
+ ipv6 address FE80::102 link-local<br>
+ ipv6 address 2001:DB8:12::1/64<br>
+ ipv6 ospf 10 area 10<br>
+!<br>
+interface GigabitEthernet0/1<br>
+ ip address 172.16.10.10 255.255.255.252<br>
+ ip ospf hello-interval 5<br>
+ ip ospf dead-interval 20<br>
+ ip ospf priority 200<br>
+ duplex auto<br>
+ speed auto<br>
+ ipv6 address FE80::102 link-local<br>
+ ipv6 address 2001:DB8:10C::2/64<br>
+ ipv6 ospf hello-interval 5<br>
+ ipv6 ospf dead-interval 20<br>
+ ipv6 ospf priority 200<br>
+ ipv6 ospf 10 area 10<br>
+!<br>
+interface Serial0/0/0<br>
+ ip address 172.16.10.6 255.255.255.252<br>
+ ipv6 address FE80::102 link-local<br>
+ ipv6 address 2001:DB8:10B::2/64<br>
+ ipv6 ospf 10 area 10<br>
+!<br>
+router ospf 10<br>
+ router-id 10.2.2.2<br>
+ log-adjacency-changes<br>
+ passive-interface GigabitEthernet0/0<br>
+ auto-cost reference-bandwidth 1000<br>
+ network 192.168.12.0 0.0.0.255 area 10<br>
+ network 172.16.10.4 0.0.0.3 area 10<br>
+ network 172.16.10.8 0.0.0.3 area 10<br>
+!<br>
+ipv6 router ospf 10<br>
+ router-id 10.2.2.2<br>
+ log-adjacency-changes<br>
+ passive-interface GigabitEthernet0/0<br>
+ auto-cost reference-bandwidth 1000<br>
+!<br>
+no cdp run<br>
+!<br>
+end<br>
+------<br><br>
+Dubai<br>
+!<br>
+ipv6 unicast-routing<br>
+!<br>
+no ipv6 cef<br>
+!<br>
+interface Serial0/0/0<br>
+ bandwidth 128<br>
+ ip address 10.10.20.1 255.255.255.252<br>
+ ipv6 address FE80::20 link-local<br>
+ ipv6 address 2001:DB8:20::1/64<br>
+ ipv6 ospf 10 area 0<br>
+!<br>
+interface Serial0/0/1<br>
+ ip address 172.16.20.1 255.255.255.252<br>
+ ipv6 address FE80::20 link-local<br>
+ ipv6 address 2001:DB8:20A::1/64<br>
+ ipv6 ospf 10 area 20<br>
+ clock rate 2000000<br>
+!<br>
+interface Serial0/1/0<br>
+ ip address 172.16.20.5 255.255.255.252<br>
+ ipv6 address FE80::20 link-local<br>
+ ipv6 address 2001:DB8:20B::1/64<br>
+ ipv6 ospf 10 area 20<br>
+ clock rate 2000000<br>
+!<br>
+router ospf 10<br>
+ router-id 20.0.0.0<br>
+ log-adjacency-changes<br>
+ auto-cost reference-bandwidth 1000<br>
+ network 10.10.20.0 0.0.0.3 area 0<br>
+ network 172.16.20.0 0.0.0.3 area 20<br>
+ network 172.16.20.4 0.0.0.3 area 20<br>
+!<br>
+ipv6 router ospf 10<br>
+ router-id 20.0.0.0<br>
+ log-adjacency-changes<br>
+ auto-cost reference-bandwidth 1000<br>
+!<br>
+end<br>
+------<br><br>
+Central<br>
+!<br>
+ipv6 unicast-routing<br>
+!<br>
+interface GigabitEthernet0/0<br>
+ ip address 192.168.21.1 255.255.255.0<br>
+ duplex auto<br>
+ speed auto<br>
+ ipv6 address FE80::201 link-local<br>
+ ipv6 address 2001:DB8:21::1/64<br>
+ ipv6 ospf 10 area 20<br>
+!<br>
+interface Serial0/0/0<br>
+ ip address 172.16.20.2 255.255.255.252<br>
+ ipv6 address FE80::201 link-local<br>
+ ipv6 address 2001:DB8:20A::2/64<br>
+ ipv6 ospf 10 area 20<br>
+!<br>
+router ospf 10<br>
+ router-id 20.1.1.1<br>
+ log-adjacency-changes<br>
+ passive-interface GigabitEthernet0/0<br>
+ auto-cost reference-bandwidth 1000<br>
+ network 172.16.20.0 0.0.0.3 area 20<br>
+ network 192.168.21.0 0.0.0.255 area 20<br>
+!<br>
+ipv6 router ospf 10<br>
+ router-id 20.1.1.1<br>
+ log-adjacency-changes<br>
+ passive-interface GigabitEthernet0/0<br>
+ auto-cost reference-bandwidth 1000<br>
+!<br>
+no cdp run<br>
+!<br>
+end<br>
+------<br><br>
+Remote<br>
+!<br>
+ipv6 unicast-routing<br>
+!<br>
+interface GigabitEthernet0/0<br>
+ ip address 192.168.22.1 255.255.255.0<br>
+ duplex auto<br>
+ speed auto<br>
+ ipv6 address FE80::202 link-local<br>
+ ipv6 address 2001:DB8:22::1/64<br>
+ ipv6 ospf 10 area 20<br>
+!<br>
+interface Serial0/0/0<br>
+ ip address 172.16.20.6 255.255.255.252<br>
+ ipv6 address FE80::202 link-local<br>
+ ipv6 address 2001:DB8:20B::2/64<br>
+ ipv6 ospf 10 area 20<br>
+!<br>
+router ospf 10<br>
+ router-id 20.2.2.2<br>
+ log-adjacency-changes<br>
+ passive-interface GigabitEthernet0/0<br>
+ auto-cost reference-bandwidth 1000<br>
+ network 192.168.22.0 0.0.0.255 area 20<br>
+ network 172.16.20.4 0.0.0.3 area 20<br>
+!<br>
+ipv6 router ospf 10<br>
+ router-id 20.2.2.2<br>
+ log-adjacency-changes<br>
+ passive-interface GigabitEthernet0/0<br>
+ auto-cost reference-bandwidth 1000<br>
+!<br>
+no cdp run<br>
+!<br>
+end<br>
+------<br><br>
+  <!-- <div class="image"><img src="../op/abl.png"></div> -->
+  <div class="image"><img src="abl.png"></div>
+ </body>
+</html>
