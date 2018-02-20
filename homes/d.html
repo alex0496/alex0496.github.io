@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+</head>
+<body>
+CCNA 3 Scaling Networks v6.0 Final Exam Option A, B und C<br><br><br><br>
+
+001. A network administrator is adding a new VLAN for testing. The company uses VTP and the VLAN is not directly attached to either of the switches configured as VTP servers. What is the best method to add this VLAN to the network?<br>---<br>
+Manually add the VLAN to the VLAN database of the VTP servers.<br>---<br><br>
+
+002. Which industry-wide specification was developed to decrease the time that is needed to move to the forwarding state by switch ports that are operating in a redundantly switched topology?<br>---<br>
+RSTP<br>---<br><br>
+
+003. Refer to the exhibit. A network administrator is verifying the bridge ID and the status of this switch in the STP election. Which statement is correct based on the command output?<br>---<br>
+The bridge priority of Switch_2 has been lowered to a predefined value to become the root bridge.<br>---<br><br>
+
+004. Refer to the exhibit. Which switching technology would allow data to be transmitted over each access layer switch link and prevent the port from being blocked by spanning tree due to the redundant link?<br>---<br>
+EtherChannel<br>---<br><br>
+
+005. Which three pairs of trunking modes will establish a functional trunk link between two Cisco switches?<br>---<br>
+dynamic desirable - dynamic desirable<br>
+dynamic desirable - dynamic auto<br>
+dynamic desirable - trunk<br>---<br><br>
+
+006. Refer to the exhibit. The configuration shows the commands entered by a network administrator for inter-VLAN routing. However, host PCA cannot communicate with PCB. Which part of the inter-VLAN configuration causes the problem?<br>---<br>
+VLAN configuration<br>---<br><br>
+
+007. Refer to the exhibit.<br>
+What is the role of the SW3 switch?<br>---<br>
+root bridge<br>---<br><br>
+
+008. Which routing protocol is able to scale for large networks and utilizes non-backbone areas for expansion?<br>---<br>
+OSPF<br>---<br><br>
+
+009. In the Cisco hierarchical design model, which layer is more likely to have a fixed configuration switch than the other layers?<br>---<br>
+access<br>---<br><br>
+
+010. A network engineer is interested in obtaining specific information relevant to the operation of both distribution and access layer Cisco devices. Which command provides common information relevant to both types of devices?<br>---<br>
+show cdp neighbors<br>---<br><br>
+
+011. A switched network has converged completely. All switches currently have a VTP revision number of 5. A new switch that has been configured as a VTP server is added to the network. The new switch has a VTP revision number of 4. What will occur within the network?<br>---<br>
+The VTP databases will remain unchanged in all switches with the exception of the newly added switch.<br>---<br><br>
+
+012. Which spanning tree standard was developed by Cisco to provide separate instances of 802.1w per VLAN?<br>---<br>
+Rapid PVST+<br>---<br><br>
+
+013. What are two advantages of EtherChannel?<br>---<br>
+Configuring the EtherChannel interface provides consistency in the configuration of the physical links.<br>
+Spanning Tree Protocol views the physical links in an EtherChannel as one logical connection.<br>---<br><br>
+
+014. When EtherChannel is implemented, multiple physical interfaces are bundled into which type of logical connection?<br>---<br>
+port channel<br>---<br><br>
+
+015. When a range of ports is being configured for EtherChannel, which mode will configure LACP on a port only if the port receives LACP packets from another device?<br>---<br>
+passive<br>---<br><br>
+
+016. A new chief information officer (CIO) has requested implementation of a link-state dynamic routing protocol. Which two routing protocols fulfill this requirement?<br>---<br>
+OSPF<br>
+IS-IS<br>---<br><br>
+
+017. Refer to the exhibit.<br>
+A network administrator is utilizing RIPv1 in the exhibited network topology. What would the router R2 do with a packet that is originating from the 192.168.4.0/24 network and destined for network 172.16.1.0/24?<br>---<br>
+The router will load balance and forward packets to both R1 and R3.<br>---<br><br>
+
+018. What best describes the operation of distance vector routing protocols?<br>---<br>
+They send their routing tables to directly connected neighbors.<br>---<br><br>
+
+019. Which statement defines the speed of convergence of routing protocols?<br>---<br>
+The time it takes a router within a network to forward routing information.<br>---<br><br>
+
+020. What is associated with link-state routing protocols?<br>---<br>
+Shortest Path First calculations<br>---<br><br>
+
+021. Which two pieces of information are contained within a link-state packet (LSP)?<br>---<br>
+bandwidth<br>
+link type<br>---<br><br>
+
+022. What is a difference between the routing protocols EIGRP and OSPF?<br>---<br>
+EIGRP supports routing different network layer protocols whereas OSPF supports routing only IP-based protocols.<br>---<br><br>
+
+023. What protocol is used by EIGRP for the delivery and receipt of EIGRP packets?<br>---<br>
+RTP<br>---<br><br>
+
+024. How is bandwidth to a destination network calculated by EIGRP?<br>---<br>
+the lowest configured bandwidth of any interface along the route<br>---<br><br>
+
+025. Refer to the exhibit.<br>
+A network administrator has attempted to implement a default route from R1 to the ISP and propagate the default route to EIGRP neighbors. Remote connectivity from the EIGRP neighbor routers to the ISP connected to R1 is failing. Based on the output from the exhibit, what is the most likely cause of the problem?<br>---<br>
+The command redistribute static has not been issued on R1.<br>---<br><br>
+
+026. Refer to the exhibit. Which statement accurately reflects the configuration of routing on the HQ router?<br>---<br>
+A static default route was configured on this router.<br>---<br><br>
+
+027. Which command would limit the amount of bandwidth that is used by EIGRP for protocol control traffic to approximately 128 Kb/s on a 1.544 Mb/s link?<br>---<br>
+ip bandwidth-percent eigrp 100 8<br>---<br><br>
+
+028. Which criterion is preferred by the router to choose a router ID?<br>---<br>
+the router-id rid command<br>---<br><br>
+
+029. What is the effect of entering the network 192.168.10.1 0.0.0.0 area 0 command in router configuration mode?<br>---<br>
+OSPF advertisements will include the network on the interface with the IPv4 address 192.168.10.1.<br>---<br><br>
+
+030. Which three requirements are necessary for two OSPFv2 routers to form an adjacency?<br>---<br>
+The two routers must include the inter-router link network in an OSPFv2 network command.<br>
+The OSPF hello or dead timers on each router must match.<br>
+The link interface subnet masks must match.<br>---<br><br>
+
+031. Which type of OSPF router connects an OSPF area to non-OSPF routing domains?<br>---<br>
+ASBR<br>---<br><br>
+
+032. Which function is performed by an OSPF ABR?<br>---<br>
+injecting type 3 LSAs into an area<br>---<br><br>
+
+033. In which mode is the area area-id range address mask command issued when multiarea OSPF summarization is being configured?<br>---<br>
+router configuration mode<br>---<br><br>
+
+034. Refer to the exhibit. What are three resulting DR and DBR elections for the given topology?<br>---<br>
+R3 is DR for segment A.<br>
+R3 is BDR for segment B.<br>
+R5 is DR for segment B.<br>---<br><br>
+
+035. Refer to the exhibit.<br>
+How did this router learn of the highlighted route in the routing table?<br>---<br>
+by receiving an update from another OSPF router that has the default-information originate command configured<br>---<br><br>
+
+036. Which command can be used to view OSPF adjacencies with neighboring routers along with the transition state?<br>---<br>
+show ip ospf neighbor<br>---<br><br>
+
+037. Match the description to the EIGRP packet type. (Not all options are used.)<br>---<br>
+used to propagate routing information to EIGRP neighbors -> update packets<br>
+used to acknowledge the receipt of an EIGRP message that was sent using reliable delivery -> acknowledgment packets<br>
+used for neighbor discovery and to maintain neighbor adjacencies -> hello packets<br>
+sent in response to an EIGRP query -> reply packets<br>
+used to query routes from neighbors -> query packets<br>---<br><br>
+
+038. Match each description to its corresponding LSA type. (Not all options are used.)<br>---<br>
+generated by the DR on a multiaccess segment and flooded within an area -> type 2<br>
+generated by ABRs and sent between areas -> type 3<br>
+generated by ABRs and sent between areas to advertise the location of an ASBR - > type 4<br>
+generated by all routers and flooded within an area -> type 1<br>---<br><br>
+
+039. What is the term that is used for the area of a network that is affected when a device or network service experiences problems?<br>---<br>
+failure domain<br>---<br><br>
+
+040. What term is used to express the thickness or height of a switch?<br>---<br>
+rack unit<br>---<br><br>
+
+041. Which configuration changes will increment the configuration revision number on the VTP server?<br>---<br>
+configuring or deleting a VLAN or creating a VLAN name<br>---<br><br>
+
+042. What are three characteristics of VTP?<br>---<br>
+In the default VTP mode, VLANs can be created and modified on a switch.<br>
+Switches in VTP server mode store VLANs in the vlan.dat database.<br>
+VTP updates are exchanged across trunk links only.<br>---<br><br>
+
+043. What is the purpose of the vlan.dat file on a switch?<br>---<br>
+It holds the VLAN database.<br>---<br><br>
+
+044. What eliminates switching loops?<br>---<br>
+Spanning Tree Protocol<br>---<br><br>
+
+045. A small company network has six interconnected Layer 2 switches. Currently all switches are using the default bridge priority value. Which value can be used to configure the bridge priority of one of the switches to ensure that it becomes the root bridge in this design?<br>---<br>
+28672<br>---<br><br>
+
+046. What is the value used to determine which port on a non-root bridge will become a root port in a STP network?<br>---<br>
+the path cost<br>---<br><br>
+
+047. Which three STP states were replaced with the RSTP discarding state?<br>---<br>
+listening<br>
+blocking<br>
+disabled<br>---<br><br>
+
+048. As the network administrator you have been asked to implement EtherChannel on the corporate network. What does this configuration consist of?<br>---<br>
+grouping multiple physical ports to increase bandwidth between two switches<br>---<br><br>
+
+049. Which command will start the process to bundle two physical interfaces to create an EtherChannel group via LACP?<br>---<br>
+interface range GigabitEthernet 0/4 – 5<br>---<br><br>
+
+050. A network administrator configured an EtherChannel link with three interfaces between two switches. What is the result if one of the three interfaces is down?<br>---<br>
+The remaining two interfaces continue to load balance traffic.<br>---<br><br>
+
+051. When EtherChannel is configured, which mode will force an interface into a port channel without exchanging aggregation protocol packets?<br>---<br>
+on<br>---<br><br>
+
+052. Refer to the exhibit.<br>
+A network administrator is reviewing the configuration of switch S1. Which protocol has been implemented to group multiple physical ports into one logical link?<br>---<br>
+PAgP<br>---<br><br>
+
+053. What is the term used to describe a network topology where the subnets from a major classful network address space are separated from each other by addresses from a different major classful network address?<br>---<br>
+discontiguous network<br>---<br><br>
+
+054. What type of packets are sent when there is a change in the EIGRP topology?<br>---<br>
+triggered bounded update<br>---<br><br>
+
+055. Which three pieces of information does a link-state routing protocol use initially as link-state information for locally connected links?<br>---<br>
+the link router interface IP address and subnet mask<br>
+the type of network link<br>
+the cost of that link<br>---<br><br>
+    
+056. What indicates to a link-state router that a neighbor is unreachable?<br>---<br>
+if the router no longer receives hello packets<br>---<br><br>
+
+057. What are three features of EIGRP?<br>---<br>
+establishes neighbor adjacencies<br>
+uses the Reliable Transport Protocol<br>
+supports equal and unequal cost load balancing<br>---<br><br>
+
+058. What capability do protocol-dependent modules provide to the EIGRP routing protocol?<br>---<br>
+route different Layer 3 protocols<br>---<br><br>
+
+059. Which command should be used to configure EIGRP to only advertise the network that is attached to the gigabit Ethernet 0/1 interface?<br>---<br>
+network 172.16.23.64 0.0.0.63<br>---<br><br>
+
+060. Which command will configure an IPv6 default static route?<br>---<br>
+router(config)# ipv6 route ::/0 s0/0/0<br>---<br><br>
+
+061. What routing protocol can be configured to load balance across paths with unequal metrics through the use of the variance command?<br>---<br>
+EIGRP<br>---<br><br>
+
+062. What are two features of a link-state routing protocol? (Choose two.)<br>---<br>
+Routers send triggered updates in response to a change.<br>
+Routers create a topology of the network by using information from other routers.<br>---<br><br>
+
+063. A router is participating in an OSPFv2 domain. What will always happen if the dead interval expires before the router receives a hello packet from an adjacent DROTHER OSPF router?<br>---<br>
+OSPF will remove that neighbor from the router link-state database.<br>---<br><br>
+
+064. In an OSPFv2 configuration, what is the effect of entering the command network 192.168.1.1 0.0.0.0 area 0?<br>---<br>
+It tells the router which interface to turn on for the OSPF routing process.<br>---<br><br>
+
+065. What does the cost of an OSPF link indicate?<br>---<br>
+A lower cost indicates a better path to the destination than a higher cost does.<br>---<br><br>
+
+066. Which two addresses represent valid destination addresses for an OSPFv3 message? (Choose two.)<br>---<br>
+FF02::5<br>
+FE80::42<br>---<br><br>
+
+067. What information is contained in OSPF type 3 LSAs?<br>---<br>
+networks reachable in other areas<br>---<br><br>
+
+068. Refer to the exhibit.<br>
+For the given topology, what are three results of the OSPF DR and BDR elections ?<br>---<br>
+R3 is DR for segment A.<br>
+R5 is BDR for segment B.<br>
+R3 is DR for segment B.<br>---<br><br>
+
+069. Refer to the exhibit.<br>
+In this scenario, Area 40 cannot be connected directly to Area 0. Which OSPF network type must be configured in Area 1 to connect these areas?<br>---<br>
+virtual link<br>---<br><br>
+
+070. Refer to the exhibit.<br>
+What method can be used to enable an OSPF router to advertise a default route to neighboring OSPF routers?<br>---<br>
+Use the default-information originate command on R0-A.<br>---<br><br>
+
+071. Refer to the exhibit.<br>
+A network administrator has configured the OSPF timers to the values that are shown in the graphic. What is the result of having those manually configured timers?<br>---<br>
+The R1 dead timer expires between hello packets from R2.<br>---<br><br>
+
+072. Refer to the exhibit.<br>
+A network administrator has configured OSPFv2 on the two Cisco routers as shown. The routers are unable to form a neighbor adjacency. What should be done to fix the problem?<br>---<br>
+Implement the command no passive-interface Serial0/1.<br>---<br><br>
+
+073. A network administrator has configured an EtherChannel between two switches that are connected via four trunk links. If the physical interface for one of the trunk links changes to a down state, what happens to the EtherChannel?<br>---<br>
+The EtherChannel will remain functional.<br>---<br><br>
+
+074. Which mode configuration setting would allow formation of an EtherChannel link between switches SW1 and SW2 without sending negotiation traffic?<br>---<br>
+SW1: on<br>
+SW2: on<br>---<br><br>
+
+075. Which two statements are correct about EIGRP acknowledgment packets? (Choose two.)<br>---<br>
+The packets are sent as unicast.<br>
+The packets are unreliable.<br>---<br><br>
+
+076. A set of switches is being connected in a LAN topology. Which STP bridge priority value will make it least likely for the switch to be selected as the root?<br>---<br>
+61440<br>---<br><br>
+
+077. The graphic shows the following information: Switch S1 (the root bridge) uses a port that is labeled B to connect to switch S3 on a port labeled D. S3 is connected to switch S2 on a port labeled A. S2 uses a port labeled C to connect to S1. S2 is connected also to three PC workstations labeled A, B, and C.<br>
+Refer to the exhibit.<br>
+What are the possible port roles for ports A, B, C, and D in this RSTP-enabled network?<br>---<br>
+alternate, designated, root, root<br>---<br><br>
+
+078. Refer to the exhibit.<br>
+What are two results of issuing the displayed commands on S1, S2, and S3? (Choose two.)<br>---<br>
+S2 can become root bridge if S1 fails.<br>
+S1 will automatically adjust the priority to be the lowest.<br>---<br><br>
+
+079. Which statement describes a characteristic of OSPF external routes?<br>---<br>
+The difference between type 1 and type 2 is in the way the cost of the route is being calculated.<br>---<br><br>
+
+080. By default, how many equal cost routes to the same destination can be installed in the routing table of a Cisco router?<br>---<br>
+4<br>---<br><br>
+
+081. An EIGRP router loses the route to a network. Its topology table contains two feasible successors to the same network. What action will the router take?<br>---<br>
+The best alternative backup route is immediately inserted into the routing table.<br>---<br><br>
+
+082. A network administrator is analyzing first-hop router redundancy protocols. What is a characteristic of VRRPv3?<br>---<br>
+It supports IPv6 and IPv4 addressing.<br>---<br><br>
+
+083. What is the function of STP in a scalable network?<br>---<br>
+It disables redundant paths to eliminate Layer 2 loops.<br>---<br><br>
+
+084. When should EIGRP automatic summarization be turned off?<br>---<br>
+when a network contains discontiguous network addresses<br>---<br><br>
+
+085. Which characteristic would most influence a network design engineer to select a multilayer switch over a Layer 2 switch?<br>---<br>
+ability to build a routing table<br>---<br><br>
+
+086. What are two features of OSPF interarea route summarization? (Choose two.)<br>---<br>
+Routes within an area are summarized by the ABR.<br>
+ABRs advertise the summarized routes into the backbone.<br>---<br><br>
+
+087. Refer to the exhibit.<br>
+Which two conclusions can be derived from the output? (Choose two.)<br>---<br>
+There is one feasible successor to network 192.168.1.8/30.<br>
+Router R1 has two successors to the 172.16.3.0/24 network.<br>---<br><br>
+
+088. What are the only two roles that permit an OSPF router to be configured for summarization? (Choose two.)<br>---<br>
+autonomous system boundary router<br>
+area border router<br>---<br><br>
+
+089. A network engineer examining the operation of EIGRP on a router notices that one particular route is in an active state. What can the engineer determine about this route?<br>---<br>
+EIGRP query messages are being sent to other routers requesting paths to this network.<br>---<br><br>
+
+090. A router needs to be configured to route within OSPF Area 0. Which two commands are required to accomplish this? (Choose two.)<br>---<br>
+RouterA(config-router)# network 192.168.2.0 0.0.0.255 area 0<br>
+RouterA(config)# router ospf 1<br>---<br><br>
+
+091. Refer to the exhibit.<br>
+What are three resulting DR and BDR elections for the given topology? (Choose three.)<br>---<br>
+R4 is BDR for segment B.<br>
+R5 is DR for segment B.<br>
+R2 is BDR for segment A.<br>---<br><br>
+
+092. Which statement is true about the states of the IEEE 802.1D Spanning Tree Protocol?<br>---<br>
+It takes 15 seconds for a port to go from blocking to forwarding.<br>---<br><br>
+
+093. What is one reason to use the ip ospf priority command when the OSPF routing protocol is in use?<br>---<br>
+to influence the DR/BDR election process<br>---<br><br>
+
+094. A network administrator is configuring EIGRP load balancing with the commands:<br>
+Router(config)# router eigrp 1<br>
+Router(config-router)# variance 3<br>
+Router(config-router)# end<br>
+What is a direct result of entering these commands?<br>---<br>
+Any feasible successor routes to the same destination network with a metric, equal to or less than 3 times that of the successor, will be installed in the routing table.<br>---<br><br>
+
+095. What are two load-balancing methods in the EtherChannel technology? (Choose two.)<br>---<br>
+source IP to destination IP<br>
+source MAC to destination MAC<br>---<br><br>
+
+096. Which statement describes the autonomous system number used in EIGRP configuration on a Cisco router?<br>---<br>
+It functions as a process ID in the operation of the router.<br>---<br><br>
+
+097. An administrator was troubleshooting a router-on-a-stick topology and concluded that the problem was related to the configuration of VLANs on the router subinterfaces. Which two commands can the administrator use in the router to identify the problem? (Choose two.)<br>---<br>
+show running-config<br>
+show ip interface<br>---<br><br>
+
+098. What is a key distinction between classful and classless routing protocols?<br>---<br>
+Classful routing protocols do not send subnet mask information in their routing updates.<br>---<br><br>
+
+099. Refer to the exhibit.
+The network administrator configures both switches as displayed. However, host C is unable to ping host D and host E is unable to ping host F. What action should the administrator take to enable this communication?<br>---<br>
+Configure either trunk port in the dynamic desirable mode.<br>---<br><br>
+
+100. Which is a characteristic of EtherChannel?<br>---<br>
+STP treats all interfaces in a bundle as a single logical link.<br>---<br><br>
+
+101. The topology displays seven routers with four alternative ways to get from source to destination:<br>
+Path cost for R1-R3-R4-R5-R6-R7 = 29<br>
+Path cost for R1-R3-R2-R6-R7 = 42<br>
+Path cost for R1-R2-R6-R7 = 43<br>
+Path cost for R1-R4-R5-R6-R7 = 31<br>
+The source is the LAN that is connected to R1. The destination is the LAN that is connected to R7.<br>
+Refer to the exhibit.<br>
+A network administrator has configured OFPF in the topology as shown. What is the preferred path to get from the LAN network that is connected to R1 to the LAN network that is connected to R7?<br>---<br>
+R1-R3-R4-R5-R6-R7<br>---<br><br>
+
+102. Four switches, labeled as SW1, SW2, SW3, and SW4, are interconnected. SW1 interface Gi 1/1 is connected to SW4 interface Gi 1/2. SW1 interface Gi 1/2 is connected to SW3 interface Gi 1/1. SW2 interface Gi 1/1 is connected to SW3 interface Gi 1/2. SW2 interface Gi 1/2 is connected to SW4 interface Gi 1/1. There are four text boxes.<br><br>
+
+Text box 1 shows the following:<br>
+SW1 Priority 32769<br>
+MAC Address = 00E0.000B.2222<br><br>
+
+Text box 2 shows the following:<br>
+SW2 Priority 32769<br>
+MAC Address = 00E0.000C.3333<br><br>
+
+Text box 3 shows the following:<br>
+SW3 Priority 32769<br>
+MAC Address = 00E0.000A.1111<br><br>
+
+Text box 4 shows the following:<br>
+SW4 Priority 32769<br>
+MAC Address = 00E0.000D.4444<br><br>
+
+Refer to the exhibit.<br>
+Which switch will be elected the root bridge and which switch will place a port in blocking mode? (Choose two.)<br>---<br>
+SW3 will become the root bridge.<br>
+SW4 will get a port blocked.<br>---<br><br>
+
+103. Which command can be used by an administrator to display a list of interfaces that are enabled for OSPFv3?<br>---<br>
+show ipv6 protocols<br>---<br><br>
+
+104. What EIGRP packet type is used by EIGRP routers to discover neighbors on directly connected links?<br>---<br>
+Hello<br>---<br><br>
+
+105. Refer to the exhibit.<br>
+All the displayed switches are Cisco 2960 switches with the same default priority and operating at the same bandwidth. Which three ports will be STP designated ports? (Choose three.)<br>---<br>
+fa0/13<br>
+fa0/21<br>
+fa0/10<br>---<br><br>
+
+106. How is the router ID for an OSPFv3 router determined?<br>---<br>
+the highest IPv4 address on an active interface<br>---<br><br>
+
+107. Which step can be taken to ensure that a switch added to the network does not overwrite the VLAN databases on existing switches in the same VTP domain?<br>---<br>
+Reset the switch VTP revision number to 0.<br>---<br><br>
+
+108. A network administrator is planning to add a new switch to the network. What should the network administrator do to ensure the new switch exchanges VTP information with the other switches in the VTP domain?<br>---<br>
+Configure the correct VTP domain name and password on the new switch.<br>---<br><br>
+
+109. Refer to the exhibit.<br>
+A network administrator has configured OSPFv2 on the two Cisco routers as shown. PC1 is unable to communicate with PC2. What should be done to fix the problem?<br>---<br>
+Add the network 192.168.255.0 0.0.0.3 area 0 command to router R1 and remove the network 192.168.255.1 0.0.0.0 area 0command.<br>---<br><br>
+
+110. When the show spanning-tree vlan 33 command is issued on a switch, three ports are shown in the forwarding state. In which two port roles could these interfaces function while in the forwarding state? (Choose two.)<br>---<br>
+Designated<br>
+Root<br>---<br><br>
+
+111. Which two parameters must match on the ports of two switches to create a PAgP EtherChannel between the switches? (Choose two.)<br>---<br>
+VLAN information<br>
+Speed<br>---<br><br>
+
+112. What is the final operational state that will form between an OSPF DR and a DROTHER once the routers reach convergence?<br>---<br>
+Full<br>---<br><br>
+
+113. Which command is used to display the bandwidth of an interface on an EIGRP-enabled router?<br>---<br>
+show interfaces<br>---<br><br>
+
+114. How are externally learned EIGRP routes identified in the routing table?<br>---<br>
+EX<br>---<br><br>
+
+115. What does the SPF algorithm consider to be the best path to a network?<br>---<br>
+The path that includes the fastest cumulative bandwidth links.<br>---<br><br>
+
+116. Which protocol does EIGRP use for the transportation of EIGRP packets?<br>---<br>
+Real-Time Transport Protocol<br>---<br><br>
+
+117. What is a function of OSPF hello packets?<br>---<br>
+to discover neighbors and build adjacencies between them<br>---<br><br>
+
+118. Which routing table descriptor is used to identify the OSPF networks advertised by type 1 LSAs?<br>---<br>
+O<br>---<br><br>
+
+119. What does an OSPF area contain?<br>---<br>
+routers that have the same link-state information in their LSDBs<br>---<br><br>
+
+120. What two values must match between two EIGRP directly connected neighbors to establish and maintain an adjacency? (Choose two.)<br>---<br>
+autonomous system number<br>
+metric parameters<br>---<br><br>
+
+121. Refer to the exhibit.<br>
+Switch SW-A is to be used as a temporary replacement for another switch in the VTP Student domain. What two pieces of information are indicated from the exhibited output? (Choose two.)<br>---<br>
+This switch will update its VLAN configuration when VLAN changes are made on a VTP server in the same domain.<br>
+There is a risk that the switch may cause incorrect VLAN information to be sent through the domain.<br>---<br><br>
+
+122. What are two reasons to install a single 48-port fixed configuration switch, rather than two 24-port fixed configuration switches, in a wiring closet that supports two classrooms? (Choose two.)<br>---<br>
+more ports available for end devices<br>
+reduced power and space requirements<br>---<br><br>
+
+123. What is a characteristic of spanning tree?<br>---<br>
+It is enabled by default on Cisco switches.<br>---<br><br>
+
+124. Refer to the exhibit.<br>
+A network administrator would like to implement dynamic routing within a small network environment as shown in the exhibit. Which routing protocol would be a viable solution?<br>---<br>
+EIGRP<br>---<br><br>
+
+125. Refer to the exhibit.<br>
+R1 and R2 are OSPFv3 neighbors. Which address would R1 use as the next hop for packets that are destined for the Internet?<br>---<br>
+FE80::21E:BEFF:FEF4:5538<br>---<br><br>
+
+126. Refer to the exhibit.<br>
+What will Router1 do if it receives packets that are destined to network 2001:db8:11:100::/64?<br>---<br>
+drop the packets<br>---<br><br>
+
+127. Match the order in which the link-state routing process occurs on a router. (Not all options are used.)<br>---<br>
+Step 1 -> Each router learns about its own directly connected networks.<br>
+Step 2 -> Each router is responsible for “saying hello” to its neighbors on directly connected networks.<br>
+Step 3 -> Each router builds a Link-State Packet (LSP) containing the state of each directly connected link.<br>
+Step 4 -> Each router floods the LSP to all neighbors, who then store all LSPs received in a database.<br>
+Step 5 -> Each router uses the database to construct a complete map of the topology and computes the best.<br>---<br><br>
+
+128. Match the description to the term. (Not all options are used.)<br>---<br>
+This is the algorithm used by OSPF. -> Shortest Path First<br>
+This is where the details of the neighboring routers can be found. -> adjacency database<br>
+This is where you can find the topology table. -> link-state database<br>
+All the routers are in the backbone area. -> Single-area OSPF<br>---<br><br>
+
+129. Match the order of precedence to the process logic that an OSPFv3 network router goes through in choosing a router ID. (Not all options are used.)<br>---<br>
+priority 1 -> The router uses the explicitly configured router ID if any.<br>
+priority 2 -> The router uses the highest configured IPv4 address of a loopback interface.<br>
+priority 3 -> The router uses the highest configured IPv4 address of an active interface.<br>
+priority 4 -> The router displays a console message to configure the router ID manually.<br><br>
+
+</body>
+</html>
